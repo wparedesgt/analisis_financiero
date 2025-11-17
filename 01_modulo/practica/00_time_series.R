@@ -90,3 +90,70 @@ melsyd_economy %>%
        subtitle = 'Melbourne-Sydney', 
        y = "Passengers ('0000)")
   
+
+################3
+data("aus_production")
+aus_production
+
+aus_production %>% 
+  filter(year(Quarter) >= 1980) %>% 
+  autoplot(Electricity) +
+  labs(y = 'GWh', title = 'Australian electricity production')
+
+
+aus_production %>% 
+  autoplot(Bricks) +
+  labs(y = 'millon units', 
+       title = 'Australian clay brick production')
+
+
+us_employment %>% 
+  filter(Title == 'Retail Trade', year(Month) >= 1980) %>% 
+  autoplot(Employed / 1000) + 
+  labs(y = 'Million people', 
+       title = 'Retail employment, USA')
+
+
+gafa_stock %>% 
+  filter(Symbol == 'AMZN', year(Date) >= 2018) %>% 
+  autoplot(Close) + 
+  labs(y = '$US', 
+       title = 'Amazon closing stock price')
+
+pelt %>% 
+  autoplot(Lynx) + 
+  labs(y = 'Number trapped', 
+       title = 'Annual Canadian Lynx Trappings')
+
+
+#### Plots estacionales multiples
+
+a10 %>% autoplot(Cost)
+
+a10 %>% 
+  gg_season(Cost, labels = 'both') + 
+  labs(y = '$ Million', 
+       title = 'Seasonal plot: antidiabetic drug sales')
+
+
+beer <- aus_production %>% 
+  select(Quarter, Beer) %>% 
+  filter(year(Quarter) >= 1992) 
+
+beer %>% autoplot(Beer) + 
+  geom_point() +
+  labs(title = 'Australian beer production', 
+       y = 'Megalitres')
+
+beer %>% gg_season(Beer, labels = 'right')
+
+vic_elec
+vic_elec %>% autoplot()
+vic_elec %>% gg_season(Demand)
+
+vic_elec %>% gg_season(Demand, period = 'week')
+vic_elec %>% gg_season(Demand, period = 'day')
+
+#### Graficos de series temporales
+
+
