@@ -156,4 +156,9 @@ vic_elec %>% gg_season(Demand, period = 'day')
 
 #### Graficos de series temporales
 
+a10 %>% 
+  autoplot(Cost) +
+  labs(y = "$ (millons", title = "Australian antidiabetic drug sales")
+
+
 
